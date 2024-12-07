@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 223.94,
+      "left": -162.97,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -140, "left": -160.98, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 51.2,
+      "left": -210.4,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 29, "left": 345.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "ldr1:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "ldr1:GND", "uno:GND.1", "black", [ "h0" ] ],
+    [ "pir1:VCC", "uno:5V", "red", [ "v0" ] ],
+    [ "pir1:OUT", "uno:2", "green", [ "v0" ] ],
+    [ "pir1:GND", "uno:GND.1", "black", [ "v0" ] ],
+    [ "relay1:IN", "uno:8", "green", [ "h0" ] ],
+    [ "relay1:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "relay1:GND", "uno:GND.1", "black", [ "h0" ] ],
+    [ "oled1:GND", "uno:GND.2", "black", [ "v0" ] ],
+    [ "oled1:VCC", "uno:5V", "red", [ "v0" ] ],
+    [ "oled1:SCL", "uno:A5", "green", [ "v0" ] ],
+    [ "oled1:SDA", "uno:A4", "green", [ "v0" ] ],
+    [ "ldr1:AO", "uno:A0", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
