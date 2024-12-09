@@ -3,38 +3,43 @@
   "author": "Anonymous maker",
   "editor": "wokwi",
   "parts": [
+    { "type": "wokwi-breadboard-mini", "id": "bb1", "top": -78.2, "left": 304.8, "attrs": {} },
     { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
     {
       "type": "board-ssd1306",
       "id": "oled1",
-      "top": 223.94,
-      "left": -162.97,
+      "top": 70.34,
+      "left": 278.63,
       "attrs": { "i2cAddress": "0x3c" }
     },
-    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -140, "left": -160.98, "attrs": {} },
     {
-      "type": "wokwi-photoresistor-sensor",
-      "id": "ldr1",
-      "top": 51.2,
-      "left": -210.4,
-      "attrs": {}
+      "type": "wokwi-led-ring",
+      "id": "ring1",
+      "top": -172.16,
+      "left": 154.79,
+      "attrs": { "pixels": "16" }
     },
-    { "type": "wokwi-relay-module", "id": "relay1", "top": 29, "left": 345.6, "attrs": {} }
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -73.6, "left": -28, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 71.2, "left": 395.82, "attrs": {} }
   ],
   "connections": [
-    [ "ldr1:VCC", "uno:5V", "red", [ "h0" ] ],
-    [ "ldr1:GND", "uno:GND.1", "black", [ "h0" ] ],
-    [ "pir1:VCC", "uno:5V", "red", [ "v0" ] ],
-    [ "pir1:OUT", "uno:2", "green", [ "v0" ] ],
-    [ "pir1:GND", "uno:GND.1", "black", [ "v0" ] ],
-    [ "relay1:IN", "uno:8", "green", [ "h0" ] ],
-    [ "relay1:VCC", "uno:5V", "red", [ "h0" ] ],
-    [ "relay1:GND", "uno:GND.1", "black", [ "h0" ] ],
-    [ "oled1:GND", "uno:GND.2", "black", [ "v0" ] ],
-    [ "oled1:VCC", "uno:5V", "red", [ "v0" ] ],
-    [ "oled1:SCL", "uno:A5", "green", [ "v0" ] ],
-    [ "oled1:SDA", "uno:A4", "green", [ "v0" ] ],
-    [ "ldr1:AO", "uno:A0", "green", [ "h0" ] ]
+    [ "ring1:DIN", "uno:4", "green", [ "v19.2", "h-9.6" ] ],
+    [ "uno:GND.1", "bb1:1b.f", "black", [ "v-18.6", "h182.1", "v0", "h19.2" ] ],
+    [ "bb1:2b.f", "uno:3.3V", "green", [ "v-9.6", "h-57.6", "v211.2", "h-124.8" ] ],
+    [ "ring1:VCC", "bb1:2b.g", "red", [ "v9.6", "h105.6" ] ],
+    [ "bb1:1b.g", "ring1:GND", "green", [ "v-19.2", "h-105.6" ] ],
+    [ "uno:A0", "ldr1:AO", "green", [ "v19.7", "h60.8", "v-211.2", "h-124.8", "v-9.6" ] ],
+    [ "ldr1:GND", "bb1:1b.h", "black", [ "h144", "v47.6", "h9.6" ] ],
+    [ "bb1:2b.h", "ldr1:VCC", "green", [ "v-38.4", "h-182.4", "v-38.4", "h9.6" ] ],
+    [ "oled1:GND", "bb1:1b.j", "black", [ "v0" ] ],
+    [ "oled1:VCC", "bb1:2b.j", "red", [ "v0" ] ],
+    [ "oled1:SCL", "uno:A5", "green", [ "v-19.2", "h-66.9", "v163.2", "h-9.6" ] ],
+    [ "oled1:SDA", "uno:A4", "green", [ "v-19.2", "h-76.73", "v172.8", "h-19.2" ] ],
+    [ "bb1:1b.i", "bb1:3b.i", "green", [ "v0" ] ],
+    [ "bb1:2b.i", "bb1:4b.i", "green", [ "v0" ] ],
+    [ "bb1:3b.j", "pir1:GND", "green", [ "v28.8", "h57.6", "v105.6", "h57.6" ] ],
+    [ "pir1:VCC", "bb1:5b.i", "red", [ "v-9.6", "h-38.4", "v-96", "h-38.4" ] ],
+    [ "pir1:OUT", "uno:2", "green", [ "v0", "h-172.94", "v-163.2", "h-28.8" ] ]
   ],
   "dependencies": {}
 }
